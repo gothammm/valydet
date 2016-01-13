@@ -2,6 +2,9 @@
 
 - A tiny module to validate JSON data.
 
+## Status
+[![Build Status](https://travis-ci.org/peek4y/valydet.svg?branch=master)](https://travis-ci.org/peek4y/valydet)
+
 ## Usage
 
 ```javascript
