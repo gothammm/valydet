@@ -1,0 +1,38 @@
+{
+  "name": "valydet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peek4y/valydet.git"
+  },
+  "keywords": [
+    "validation",
+    "json",
+    "validation",
+    "schema",
+    "is",
+    "validate"
+  ],
+  "author": "Gautham Ramachandran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peek4y/valydet/issues"
+  },
+  "homepage": "https://github.com/peek4y/valydet#readme",
+  "dependencies": {
+    "is_js": "^0.7.6",
+    "ramda": "^0.19.1"
+  },
+  "engines": {
+    "node": ">=4.0"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  }
+}
