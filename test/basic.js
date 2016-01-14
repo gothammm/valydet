@@ -7,31 +7,66 @@ const valydet = require('../lib/valydet');
 
 describe('check required attribute', () => {
   let PostSchema = new valydet.Schema({
-    id: { 
+    id: {
       type: 'string', required: true
     },
     email: { type: 'email' }
   });
-  
+
+  let CommentSchema = new valydet.Schema({
+    id: {
+      type: 'number', required: true
+    },
+    message: { type: 'string' },
+    code: { type: 'alphaNumeric' }
+  });
+
   it('should have error - "id" is required', (done) => {
     let instance = PostSchema.validate({
       id: '',
       email: 'test@test.com'
     });
-    expect(instance.errors).to.have.length.of.at.least(1);
-    expect(instance.errors[0]).to.have.ownProperty('key');
-    expect(instance.errors[0].key).to.equal('id');
+    let failures = instance.failures();
+    expect(failures).to.have.length.of.at.least(1);
+    expect(failures[0]).to.have.ownProperty('key');
+    expect(failures[0].key).to.equal('id');
     done();
   });
-  
-  it('should have error - invalid "email"', (done) => {
+
+  it('should validate email type', (done) => {
     let instance = PostSchema.validate({
       id: 'testId',
       email: 'testtest.com'
     });
-    expect(instance.errors).to.have.length.of.at.least(2);
-    expect(instance.errors[1]).to.have.ownProperty('key');
-    expect(instance.errors[1].key).to.equal('email');
+    let failures = instance.failures();
+    expect(failures).to.have.length.of.at.least(1);
+    expect(failures[0]).to.have.ownProperty('key');
+    expect(failures[0].key).to.equal('email');
+    done();
+  });
+
+  it('should validate number type', (done) => {
+    let instance = CommentSchema.validate({
+      id: 'invalid_id',
+      message: 'Something'
+    });
+    let failures = instance.failures();
+    expect(failures).to.have.length.of.at.least(1);
+    expect(failures[0]).to.have.ownProperty('key');
+    expect(failures[0].key).to.equal('id');
+    done();
+  });
+
+  it('should validate url type', (done) => {
+    let instance = CommentSchema.validate({
+      id: 12312,
+      message: 'something',
+      code: '!@#%!!@#'
+    });
+    let failures = instance.failures();
+    expect(failures).to.have.length.of.at.least(1);
+    expect(failures[0]).to.have.ownProperty('key');
+    expect(failures[0].key).to.equal('code');
     done();
   });
 });
