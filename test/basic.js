@@ -5,7 +5,7 @@ const Chai = require('chai');
 const expect = Chai.expect;
 const valydet = require('../lib/valydet');
 
-describe('check required attribute', () => {
+describe('test basic cases', () => {
   let PostSchema = new valydet.Schema({
     id: {
       type: 'string', required: true
