@@ -49,13 +49,13 @@ const SomeSchema = new valydet.Schema({
 });
  ```
  
- ## schemaInstance.validate(data)
+## schemaInstance.validate(data)
  
  - Validates the supplied data against the schema definition.
  - **returns**: [] of errors
 
  
- ## schemaInstance.failures()
+## schemaInstance.failures()
  
  - **returns**: list of errors
   ```javascript
