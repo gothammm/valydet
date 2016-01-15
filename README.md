@@ -58,6 +58,7 @@ const SomeSchema = new valydet.Schema({
 ## schemaInstance.failures()
  
  - **returns**: list of errors
+
   ```javascript
     // error format
     {
