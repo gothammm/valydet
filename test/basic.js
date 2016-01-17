@@ -20,7 +20,14 @@ describe('test basic cases', () => {
     message: { type: 'string' },
     code: { type: 'alphaNumeric' }
   });
-
+  
+  
+  it('should be of type utyl.Schema', (done) => {
+    expect(PostSchema).instanceof(valydet.Schema);
+    expect(CommentSchema).instanceof(valydet.Schema);
+    done();
+  });
+  
   it('should have error - "id" is required', (done) => {
     let instance = PostSchema.validate({
       id: '',
