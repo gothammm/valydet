@@ -64,7 +64,7 @@ describe('test basic cases', () => {
     done();
   });
 
-  it('should validate url type', (done) => {
+  it('should fail validation for code property - CommentSchema', (done) => {
     let instance = CommentSchema.validate({
       id: 12312,
       message: 'something',
