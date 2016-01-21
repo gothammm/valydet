@@ -17,7 +17,7 @@ describe('default attribute test cases', () => {
     updatedAt: { type: 'date', default: new Date(), required: true }
   });
   
-  it('should set default of type Date', (done) => {
+  it('should pass validation for defaults', (done) => {
     let instance = UserSchema.validate({
       email: 'test@test.com'
     });
@@ -25,6 +25,18 @@ describe('default attribute test cases', () => {
     expect(failures).to.not.be.undefined;
     expect(failures).to.not.be.null;
     expect(failures).to.have.length.of(0);
+    done();
+  });
+  
+  it('should set proper default value - Date', (done) => {
+    let instance = UserSchema.validate({
+      email: 'test@test.com'
+    });
+    let data = instance.get();
+    expect(data).to.not.be.undefined;
+    expect(data).to.not.be.null;
+    expect(data.createdAt instanceof Date).to.be.true;
+    expect(data.updatedAt instanceof Date).to.be.true;
     done();
   });
 });
