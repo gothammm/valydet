@@ -17,17 +17,30 @@ describe('test basic cases', () => {
     id: {
       type: 'number', required: true
     },
+    website: { type: 'url' },
     message: { type: 'string' },
     code: { type: 'alphaNumeric' }
   });
-  
-  
+
+
   it('should be of type utyl.Schema', (done) => {
     expect(PostSchema).instanceof(valydet.Schema);
     expect(CommentSchema).instanceof(valydet.Schema);
     done();
   });
-  
+
+  it('should have error - invalid url', (done) => {
+    let instance = CommentSchema.validate({
+      id: 1241,
+      website: 'tesastcom'
+    });
+    let failures = instance.failures();
+    expect(failures).to.have.length.of.at.least(1);
+    expect(failures[0]).to.have.ownProperty('key');
+    expect(failures[0].key).to.equal('website');
+    done();
+  });
+
   it('should have error - "id" is required', (done) => {
     let instance = PostSchema.validate({
       id: '',
