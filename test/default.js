@@ -61,4 +61,16 @@ describe('default attribute test cases', () => {
     expect(data.comments instanceof Array).to.be.true;
     done();
   });
+  
+  it('should set default value - Number', (done) => {
+    let testSchema = new valydet.Schema({
+      id: { type: 'number', default: 2, required: true }
+    });
+    
+    let failures = testSchema.validate({}).failures();
+    expect(failures).to.not.be.undefined;
+    expect(failures).to.not.be.null;
+    expect(failures).to.have.length(0);
+    done();
+  });
 });
